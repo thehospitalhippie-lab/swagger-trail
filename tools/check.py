@@ -36,6 +36,16 @@ for page in docs.rglob("*.html"):
             if not target.exists():
                 problems.append(f"{page.relative_to(ROOT)}: broken link {href}")
 
+# SEO notes are advisory: warn, never block.
+import yaml
+for f in sorted((ROOT / "posts").glob("*.md")):
+    m = re.match(r"^---\n(.*?)\n---\n", f.read_text(encoding="utf-8"), re.S)
+    meta = yaml.safe_load(m.group(1)) if m else {}
+    if not meta.get("description"):
+        print(f"note: {f.name} has no meta description in its SEO notes (an excerpt is used instead)")
+    elif len(meta["description"]) > 160:
+        print(f"note: {f.name} meta description is {len(meta['description'])} chars; Google shows about 155")
+
 if problems:
     print("CHECK FAILED")
     print("\n".join(problems))

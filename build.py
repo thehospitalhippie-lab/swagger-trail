@@ -58,7 +58,7 @@ def load_posts():
     return posts
 
 
-def page(title, body, description, canonical, og_type="website"):
+def page(title, body, description, canonical, og_type="website", extra_head=""):
     t = html.escape(title)
     d = html.escape(description)
     return f"""<!doctype html>
@@ -73,7 +73,11 @@ def page(title, body, description, canonical, og_type="website"):
 <meta property="og:description" content="{d}">
 <meta property="og:type" content="{og_type}">
 <meta property="og:url" content="{canonical}">
-<link rel="alternate" type="application/rss+xml" title="{html.escape(CFG['title'])}" href="{url('feed.xml')}">
+<meta property="og:site_name" content="{html.escape(CFG['title'])}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{t}">
+<meta name="twitter:description" content="{d}">
+{extra_head}<link rel="alternate" type="application/rss+xml" title="{html.escape(CFG['title'])}" href="{url('feed.xml')}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Work+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -94,6 +98,32 @@ def page(title, body, description, canonical, og_type="website"):
 </body>
 </html>
 """
+
+
+def seo_head(p, desc, canonical):
+    """Keywords, article tags and schema.org BlogPosting data from the doc's SEO notes."""
+    kws = [str(k) for k in (p.get("keywords") or [])]
+    head = f'<meta property="article:published_time" content="{p["dt"].isoformat()}">\n'
+    head += f'<meta property="article:section" content="{html.escape(p["stop"])}">\n'
+    if kws:
+        head += f'<meta name="keywords" content="{html.escape(", ".join(kws))}">\n'
+        head += "".join(f'<meta property="article:tag" content="{html.escape(k)}">\n' for k in kws)
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": p["title"],
+        "description": desc,
+        "datePublished": p["dt"].isoformat(),
+        "url": canonical,
+        "mainEntityOfPage": canonical,
+        "author": {"@type": "Person", "name": CFG.get("author", "The Hospital Hippie")},
+        "isPartOf": {"@type": "Blog", "name": CFG["title"], "url": abs_url()},
+        "wordCount": len(re.findall(r"\w+", p["body_md"])),
+    }
+    if kws:
+        data["keywords"] = kws
+    ld = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return head + f'<script type="application/ld+json">{ld}</script>\n'
 
 
 def post_card(p):
@@ -133,11 +163,13 @@ def build():
 </article>
 {nav}
 <p class="back"><a href="{url()}">See the whole trail</a></p>"""
-        desc = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", p["html"]))[:155].rsplit(" ", 1)[0] + "…"
+        desc = p.get("description") or (
+            re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", p["html"]))[:155].rsplit(" ", 1)[0] + "…")
+        canonical = abs_url(p["slug"] + "/")
         d = OUT / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(
-            page(f"{p['title']} · {CFG['title']}", body, desc, abs_url(p["slug"] + "/"), "article"),
+            page(f"{p['title']} · {CFG['title']}", body, desc, canonical, "article", seo_head(p, desc, canonical)),
             encoding="utf-8")
         p["desc"] = desc
 
@@ -176,6 +208,14 @@ def build():
            f"<description>{html.escape(CFG['lede'])}</description><language>en-us</language>"
            f"{items}</channel></rss>")
     (OUT / "feed.xml").write_text(rss, encoding="utf-8")
+
+    # Sitemap + robots, so search engines find each new stop
+    urls = [(abs_url(), posts[-1]["date"] if posts else None)] + [(abs_url(p["slug"] + "/"), p["date"]) for p in posts]
+    sm = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    for loc, last in urls:
+        sm += f"<url><loc>{loc}</loc>" + (f"<lastmod>{last}</lastmod>" if last else "") + "</url>"
+    (OUT / "sitemap.xml").write_text(sm + "</urlset>", encoding="utf-8")
+    (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {abs_url('sitemap.xml')}\n", encoding="utf-8")
     print(f"built {len(posts)} post(s) into docs/")
 
 
