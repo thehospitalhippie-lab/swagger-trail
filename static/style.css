@@ -1,0 +1,68 @@
+:root {
+  --ground: #fbf4e6;
+  --card: #fffaf0;
+  --ink: #1d2340;
+  --ink-soft: #4a4f6a;
+  --teal: #137a7a;
+  --gold: #d99a1e;
+  --coral: #d9604c;
+  --line: #e6d8bd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #151a2e;
+    --card: #1d2340;
+    --ink: #f5ecd9;
+    --ink-soft: #c9c2b0;
+    --teal: #5cc6c0;
+    --gold: #f0b94a;
+    --coral: #f08a74;
+    --line: #2f3658;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Work Sans", system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+a { color: var(--teal); text-underline-offset: 3px; }
+a:hover { color: var(--coral); }
+header.site, main, footer.site { max-width: 42rem; margin: 0 auto; padding: 0 1rem; }
+header.site {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .25rem 1rem; padding-top: 1.5rem; padding-bottom: 1rem; border-bottom: 3px solid var(--gold);
+}
+.brand { font-family: "Shrikhand", Georgia, serif; font-size: 1.6rem; color: var(--coral); text-decoration: none; }
+.from { font-size: .85rem; color: var(--ink-soft); letter-spacing: .04em; }
+h1, h2 { font-family: "Shrikhand", Georgia, serif; font-weight: 400; line-height: 1.15; }
+h1 { font-size: clamp(2rem, 6vw, 2.8rem); margin: .4rem 0 1rem; color: var(--ink); }
+.prose h2 { font-family: "Work Sans", system-ui, sans-serif; font-weight: 700; font-size: 1.35rem; margin: 2.2rem 0 .6rem; color: var(--teal); }
+.prose h3 { font-size: 1.1rem; margin: 1.6rem 0 .4rem; }
+.prose blockquote { margin: 1.5rem 0; padding: .75rem 1.25rem; border-left: 4px solid var(--gold); background: var(--card); font-style: italic; }
+.prose ol, .prose ul { padding-left: 1.4rem; }
+.prose li { margin: .35rem 0; }
+.kicker { font-size: .9rem; color: var(--ink-soft); margin: 2rem 0 0; }
+.pill { display: inline-block; background: var(--teal); color: var(--ground); border-radius: 999px; padding: .05rem .7rem; margin-right: .4rem; font-weight: 600; }
+.hero { padding: 2rem 0 1rem; }
+.lede { font-size: 1.25rem; color: var(--ink-soft); }
+.latest { font-weight: 600; }
+.button { display: inline-block; background: var(--coral); color: #fff; text-decoration: none; padding: .7rem 1.2rem; border-radius: 14px; font-weight: 700; min-height: 44px; }
+.button:hover { background: var(--teal); color: #fff; }
+.stop h2 { font-size: 1.5rem; color: var(--coral); margin: 2.5rem 0 .5rem; }
+ol.posts { list-style: none; padding: 0; margin: 0; }
+ol.posts li { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: .9rem 1.1rem; margin: .6rem 0; }
+ol.posts a { display: flex; gap: .75rem; text-decoration: none; color: var(--ink); font-weight: 600; }
+ol.posts a:hover .t { color: var(--teal); }
+.num { color: var(--gold); font-weight: 700; min-width: 2.2rem; }
+.meta { display: block; font-size: .85rem; color: var(--ink-soft); margin-left: 2.95rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin: 3rem 0 1rem; padding-top: 1.5rem; border-top: 3px solid var(--gold); font-weight: 600; }
+.pager a { max-width: 48%; text-decoration: none; }
+.pager .next { text-align: right; margin-left: auto; }
+.soon { margin-left: auto; text-align: right; color: var(--ink-soft); }
+.back { text-align: center; }
+footer.site { margin-top: 4rem; padding-bottom: 3rem; font-size: .9rem; color: var(--ink-soft); border-top: 1px solid var(--line); }
