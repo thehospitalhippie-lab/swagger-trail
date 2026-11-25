@@ -66,3 +66,9 @@ ol.posts a:hover .t { color: var(--teal); }
 .soon { margin-left: auto; text-align: right; color: var(--ink-soft); }
 .back { text-align: center; }
 footer.site { margin-top: 4rem; padding-bottom: 3rem; font-size: .9rem; color: var(--ink-soft); border-top: 1px solid var(--line); }
+.progress { height: 14px; background: var(--line); border-radius: 999px; overflow: hidden; margin: .5rem 0 1rem; }
+.progress span { display: block; height: 100%; background: var(--teal); border-radius: 999px; }
+.stop h2 .dot { display: inline-block; width: .7em; height: .7em; border-radius: 50%; background: var(--gold); border: 3px solid var(--ink); margin-right: .5rem; vertical-align: middle; }
+ol.trail { border-left: 4px dotted var(--teal); margin-left: .55rem; padding-left: 1rem; }
+ol.trail li.ahead { opacity: .72; border-style: dashed; }
+ol.trail li .row { display: flex; gap: .75rem; font-weight: 600; }

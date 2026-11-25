@@ -1,0 +1,245 @@
+{
+ "start": "2026-11-17",
+ "posts": [
+  {
+   "order": 1,
+   "number": "0.1",
+   "stop": "Trailhead",
+   "title": "The Day I Started Mapping My Life by My Walk"
+  },
+  {
+   "order": 2,
+   "number": "0.2",
+   "stop": "Trailhead",
+   "title": "Ambulatology 101: The \"Science\" Nobody Taught You in School"
+  },
+  {
+   "order": 3,
+   "number": "0.3",
+   "stop": "Trailhead",
+   "title": "The Swagger Trail: Your Map for the Next 4 Months"
+  },
+  {
+   "order": 4,
+   "number": "1.1",
+   "stop": "Stop 1 — Head",
+   "title": "Change Your Walk, Change Your Life: The One Exercise That Starts Everything"
+  },
+  {
+   "order": 5,
+   "number": "1.2",
+   "stop": "Stop 1 — Head",
+   "title": "What Your Attention Is Actually Worth (and Who's Spending It)"
+  },
+  {
+   "order": 6,
+   "number": "1.3",
+   "stop": "Stop 1 — Head",
+   "title": "The Vicious Cycle vs. the Virtuous One: My Father's First Lesson"
+  },
+  {
+   "order": 7,
+   "number": "1.4",
+   "stop": "Stop 1 — Head",
+   "title": "Why Multitasking Is Lying to You"
+  },
+  {
+   "order": 8,
+   "number": "1.5",
+   "stop": "Stop 1 — Head",
+   "title": "Hypnotized by Your Own Mouth: Self-Talk, NLP, and the 5-4-3-2-1 Reset"
+  },
+  {
+   "order": 9,
+   "number": "1.6",
+   "stop": "Stop 1 — Head",
+   "title": "Half-Ass, the Bell Curve, and How I Fixed My Sleep"
+  },
+  {
+   "order": 10,
+   "number": "1.7",
+   "stop": "Stop 1 — Head",
+   "title": "Maslow, Chakras, and the Blind Spots Nobody Checks"
+  },
+  {
+   "order": 11,
+   "number": "2.1",
+   "stop": "Stop 2 — Shoulder",
+   "title": "What Are You Looking At? The Chip on Your Shoulder, Explained"
+  },
+  {
+   "order": 12,
+   "number": "2.2",
+   "stop": "Stop 2 — Shoulder",
+   "title": "Fight, Flight, or Flail: 8 Intelligences and the Grudges We Carry"
+  },
+  {
+   "order": 13,
+   "number": "2.3",
+   "stop": "Stop 2 — Shoulder",
+   "title": "Confrontational Healing: Sodom, Gomorrah, Perfect Strangers, and Getting Gaslit"
+  },
+  {
+   "order": 14,
+   "number": "2.4",
+   "stop": "Stop 2 — Shoulder",
+   "title": "Road Rage, Propaganda, and How to Finally Drop the Chip"
+  },
+  {
+   "order": 15,
+   "number": "3.1",
+   "stop": "Stop 3 — Heart",
+   "title": "Who Rescues Who(m)? The Bystander Effect and Getting Your Heart in the Right Place"
+  },
+  {
+   "order": 16,
+   "number": "3.2",
+   "stop": "Stop 3 — Heart",
+   "title": "Head, Heart, and Gut People: Which One Are You?"
+  },
+  {
+   "order": 17,
+   "number": "3.3",
+   "stop": "Stop 3 — Heart",
+   "title": "Fake Laughs, Ireland, and Ten Teachers Who Actually Taught Me"
+  },
+  {
+   "order": 18,
+   "number": "3.4",
+   "stop": "Stop 3 — Heart",
+   "title": "The Musical Notes Hiding in Your Chakras (and Why Humming Works)"
+  },
+  {
+   "order": 19,
+   "number": "3.5",
+   "stop": "Stop 3 — Heart",
+   "title": "The Noble Eightfold Path, Three Truths, and the Habits That Vote for Life"
+  },
+  {
+   "order": 20,
+   "number": "4.1",
+   "stop": "Stop 4 — Arms",
+   "title": "Am I Swinging for the Fences? Reaching Further Than Feels Safe"
+  },
+  {
+   "order": 21,
+   "number": "4.2",
+   "stop": "Stop 4 — Arms",
+   "title": "Laugh Without Smiling: Bullies, Nails in the Fence, and Stepping Up to Your Own Plate"
+  },
+  {
+   "order": 22,
+   "number": "4.3",
+   "stop": "Stop 4 — Arms",
+   "title": "Pat Yourself on the Back: The Exercise Nobody Does Enough"
+  },
+  {
+   "order": 23,
+   "number": "4.4",
+   "stop": "Stop 4 — Arms",
+   "title": "T-Time Tonight: Success, Failure, and Staying Gratefully Cheesy"
+  },
+  {
+   "order": 24,
+   "number": "4.5",
+   "stop": "Stop 4 — Arms",
+   "title": "Thumbs Up, Pinky Out: The Body-Language Tics You Don't Notice"
+  },
+  {
+   "order": 25,
+   "number": "4.6",
+   "stop": "Stop 4 — Arms",
+   "title": "Speed-Reading Your Own Life (and a Hard Look at a Broken System)"
+  },
+  {
+   "order": 26,
+   "number": "5.1",
+   "stop": "Stop 5 — Belly",
+   "title": "Am I Yellow-Bellied? Facing Fear from the Gut Up"
+  },
+  {
+   "order": 27,
+   "number": "5.2",
+   "stop": "Stop 5 — Belly",
+   "title": "11 Laughs a Day and a Little Capsaicin: My Weirdest Habits Explained"
+  },
+  {
+   "order": 28,
+   "number": "5.3",
+   "stop": "Stop 5 — Belly",
+   "title": "The Food Diary That Changed How I Read My Own Body"
+  },
+  {
+   "order": 29,
+   "number": "5.4",
+   "stop": "Stop 5 — Belly",
+   "title": "The Daily Pooper: Nobody Talks About This, but We Should"
+  },
+  {
+   "order": 30,
+   "number": "5.5",
+   "stop": "Stop 5 — Belly",
+   "title": "Revisiting the Bully: Breath Control as the Last Word"
+  },
+  {
+   "order": 31,
+   "number": "6.1",
+   "stop": "Stop 6 — Hips",
+   "title": "Is It All in the Hips? The Shortest Chapter, the Biggest Idea"
+  },
+  {
+   "order": 32,
+   "number": "6.2",
+   "stop": "Stop 6 — Hips",
+   "title": "Kegels, Hip Isolation, and Learning to \"Hula\" Your Way Through Life"
+  },
+  {
+   "order": 33,
+   "number": "6.3",
+   "stop": "Stop 6 — Hips",
+   "title": "Dancing Backward: Heyoka Dressing and Why I Do It on Purpose"
+  },
+  {
+   "order": 34,
+   "number": "7.1",
+   "stop": "Stop 7 — Legs & Stride",
+   "title": "Can I Shake a Leg? Getting Guts When Decisions Won't Grow on Trees"
+  },
+  {
+   "order": 35,
+   "number": "7.2",
+   "stop": "Stop 7 — Legs & Stride",
+   "title": "Eat the Frog: The One Exercise Everyone Skips"
+  },
+  {
+   "order": 36,
+   "number": "7.3",
+   "stop": "Stop 7 — Legs & Stride",
+   "title": "Taking It All in Stride: Persistence, Coolidge, and the Long Game"
+  },
+  {
+   "order": 37,
+   "number": "8.1",
+   "stop": "Summit — Toes",
+   "title": "Will I Tiptoe, Toe the Line, or Go Toe-to-Toe? Choosing Your Shadow Fight"
+  },
+  {
+   "order": 38,
+   "number": "8.2",
+   "stop": "Summit — Toes",
+   "title": "The Overall Walk: What Your Posture Already Told Everyone About You"
+  },
+  {
+   "order": 39,
+   "number": "8.3",
+   "stop": "Summit — Toes",
+   "title": "Demoralization, Destabilization, Crisis, Normalization: The Real Timeline of Change"
+  },
+  {
+   "order": 40,
+   "number": "8.4",
+   "stop": "Summit — Toes",
+   "title": "Your 9-Step Swagger Action Plan (Series Finale)"
+  }
+ ]
+}

@@ -126,6 +126,46 @@ def seo_head(p, desc, canonical):
     return head + f'<script type="application/ld+json">{ld}</script>\n'
 
 
+def build_map(posts):
+    """docs/map/index.html: the whole head-to-toe trail, public. Published stops link; the rest show their date."""
+    from datetime import date, timedelta
+    data = json.loads((ROOT / "trail.json").read_text(encoding="utf-8"))
+    start = date.fromisoformat(data["start"])
+    live = {str(p["number"]): p for p in posts}
+    sections, done = "", 0
+    for stop in STOPS:
+        items = ""
+        for t in [t for t in data["posts"] if t["stop"] == stop]:
+            k = t["order"]
+            when = start + timedelta(days=7 * ((k - 1) // 2) + (0 if k % 2 else 2))
+            p = live.get(t["number"])
+            if p:
+                done += 1
+                items += (f'<li class="walked"><a href="{url(p["slug"] + "/")}"><span class="num">{t["number"]}</span>'
+                          f'<span class="t">{html.escape(t["title"])}</span></a>'
+                          f'<span class="meta">Walked {p["dt"]:%b %-d, %Y} · {p["minutes"]} min read</span></li>')
+            else:
+                items += (f'<li class="ahead"><span class="row"><span class="num">{t["number"]}</span>'
+                          f'<span class="t">{html.escape(t["title"])}</span></span>'
+                          f'<span class="meta">Coming {when:%a, %b %-d}</span></li>')
+        sections += (f'<section class="stop"><h2><span class="dot" aria-hidden="true"></span>{html.escape(stop)}</h2>'
+                     f'<ol class="posts trail">{items}</ol></section>')
+    total = len(data["posts"])
+    body = f"""<section class="hero">
+<p class="kicker">The Swagger Trail map · head to toe</p>
+<h1>Nine stops. Forty posts. One walk.</h1>
+<p class="lede">Start at your head, end at your toes. A new stop opens every Tuesday and Thursday.</p>
+<p class="latest">{done} of {total} posts walked so far.</p>
+<div class="progress" role="img" aria-label="{done} of {total} posts published"><span style="width:{100 * done / total:.1f}%"></span></div>
+</section>
+{sections}
+<p class="back"><a href="{url()}">Back to the trail home</a></p>"""
+    d = OUT / "map"; d.mkdir(parents=True, exist_ok=True)
+    (d / "index.html").write_text(page(f"The Trail Map · {CFG['title']}",
+        body, "The whole Swagger Trail, head to toe: nine stops, forty posts from American Swagger, two a week.",
+        abs_url("map/")), encoding="utf-8")
+
+
 def post_card(p):
     return (f'<li><a href="{url(p["slug"] + "/")}"><span class="num">{p["number"]}</span>'
             f'<span class="t">{html.escape(p["title"])}</span></a>'
@@ -195,6 +235,8 @@ def build():
     (OUT / "index.html").write_text(
         page(CFG["title"], index_body, CFG["lede"], abs_url()), encoding="utf-8")
 
+    build_map(posts)
+
     # RSS
     items = ""
     for p in reversed(posts):
@@ -210,7 +252,7 @@ def build():
     (OUT / "feed.xml").write_text(rss, encoding="utf-8")
 
     # Sitemap + robots, so search engines find each new stop
-    urls = [(abs_url(), posts[-1]["date"] if posts else None)] + [(abs_url(p["slug"] + "/"), p["date"]) for p in posts]
+    urls = [(abs_url(), posts[-1]["date"] if posts else None), (abs_url("map/"), posts[-1]["date"] if posts else None)] + [(abs_url(p["slug"] + "/"), p["date"]) for p in posts]
     sm = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
     for loc, last in urls:
         sm += f"<url><loc>{loc}</loc>" + (f"<lastmod>{last}</lastmod>" if last else "") + "</url>"

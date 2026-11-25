@@ -22,7 +22,12 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 
 
+MAP_URL = "https://thehospitalhippie-lab.github.io/swagger-trail/map/"
+
+
 def clean(text: str) -> str:
+    # The private Claude canvas map is replaced by the public map on the blog.
+    text = text.replace("https://claude.ai/artifact/77uRe1nS3kwACLhxJFzA1Q", MAP_URL)
     return text.replace("\\+", "+").replace("\\#", "#").replace("\\!", "!").replace("\\-", "-")
 
 
